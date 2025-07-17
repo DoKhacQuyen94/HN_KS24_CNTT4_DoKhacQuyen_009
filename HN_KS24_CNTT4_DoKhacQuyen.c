@@ -232,6 +232,33 @@ SingleNode* bubbleSort(SingleNode* singleNode) {
     printf("Da sap xep danh sach theo gia tang dan\n");
     return singleNode;
 }
+void searchName(SingleNode* singleNode) {
+    if (singleNode == NULL ) {
+        printf("Danh sach trong\n");
+        return;
+    }
+    char name[100];
+    printf("Nhap ten thay doi: ");
+    gets(name);
+    SingleNode* currentNode = singleNode;
+    int found =0;
+    while (currentNode != NULL) {
+        if (strcmp(currentNode->product.name, name) == 0) {
+            printf("Thong ten thay doi\n");
+            printf("%ID: %d\n", currentNode->product.ID);
+            printf("Name: %s\n", currentNode->product.name);
+            printf("Price: %.2f\n", currentNode->product.price);
+            printf("Quantity: %d\n", currentNode->product.quantity);
+            found = 1;
+            break;
+
+        }
+        currentNode = currentNode->next;
+    }
+    if (!found) {
+        printf("Khong tim thay san pham co ten: %s\n",name);
+    }
+}
 int main(void) {
     int choice;
     SingleNode* singleNode = NULL;
@@ -279,6 +306,7 @@ int main(void) {
                 break;
 
             case 8:
+                searchName(singleNode);
                 break;
             case 9:
                 printf("Chuong trinh da thoat\n");
